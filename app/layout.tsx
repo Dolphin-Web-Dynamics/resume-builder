@@ -1,14 +1,14 @@
 'use client';
 
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import type { Metadata } from "next";
+// import { Inter } from "next/font/google";
 import './globals.css';
 // import "./app.css";
 import { ResumeProvider } from "@/context/ResumeContext";
 import Link from 'next/link';
 
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
