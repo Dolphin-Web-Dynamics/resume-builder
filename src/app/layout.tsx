@@ -4,7 +4,7 @@
 // import { Inter } from "next/font/google";
 import './globals.css';
 // import "./app.css";
-import { ResumeProvider } from "@/context/ResumeContext";
+import { ResumeProvider } from "@/src/context/ResumeContext";
 import Link from 'next/link';
 
 
