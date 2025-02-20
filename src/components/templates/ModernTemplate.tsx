@@ -1,8 +1,8 @@
-// components/templates/ModernTemplate.tsx
+"use client";
 
 import React from 'react';
 import SkillsTable, { Skill } from '../SkillsTable';
-import { ResumeData } from '@/src/types/resume';
+import { ResumeData } from '@/types/resume';
 import ReactMarkDown from 'react-markdown';
 
 interface ModernTemplateProps {
@@ -19,7 +19,7 @@ const ModernTemplate: React.FC<ModernTemplateProps> = ({ data }) => {
     typeof skill === 'string' ? { technology: skill, is_relevant: true } : (skill as Skill)
   );
   return (
-    <>
+    <div className="container mx-auto p-4">
       {/* // The container class here enforces a consistent max-width (if you have container sizes defined)
       // You can adjust the container’s max-width in your Tailwind config or add a specific max-w-* class. */}
       {/* Header Section */}
@@ -119,7 +119,7 @@ const ModernTemplate: React.FC<ModernTemplateProps> = ({ data }) => {
           </ul>
         </div>
       </section >
-    </>
+    </div>
   );
 };
 

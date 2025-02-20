@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { ResumeData } from '../../types/resume';
 import SkillsTable, { Skill } from '../SkillsTable';
@@ -18,7 +20,7 @@ const ClassicTemplate: React.FC<ClassicTemplateProps> = ({ data }) => {
   );
 
   return (
-    <>
+    <div className="container mx-auto p-4">
       {/* Header Section */}
       <header className="text-center print:visible">
         <h1 className="text-3xl font-bold">{data.candidate_name}</h1>
@@ -101,7 +103,7 @@ const ClassicTemplate: React.FC<ClassicTemplateProps> = ({ data }) => {
             </div>
           ))}
       </section>
-    </>
+    </div>
   );
 };
 
