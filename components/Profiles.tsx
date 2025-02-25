@@ -38,6 +38,7 @@ export default function Profiles() {
     }
 
 
+
     useEffect(() => {
         const sub = client.models.Profile.observeQuery().subscribe({
             // next: ({ items, isSynced }) => {

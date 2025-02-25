@@ -8,36 +8,24 @@ import type { Schema } from '@/amplify/data/resource';
 import ExperienceUpdateForm from "@/ui-components/ExperienceUpdateForm";
 import ExperienceCreateForm from "@/ui-components/ExperienceCreateForm";
 import { generateClient } from 'aws-amplify/data';
-// Button } from '@aws-amplify/ui-react';
 import { PlusIcon } from '@heroicons/react/24/solid';
 
 const client = generateClient<Schema>();
 
-
 interface ExperiencesProps {
-    selectedProfile: Schema['Profile']['type'] | '';
+    selectedProfile: Schema['Profile']['type'] | null;
 }
 
-// interface ExperiencesProps {
-//     setSelectedExperience: React.Dispatch<React.SetStateAction<Schema['Experience']['type']>>;
-// }
-
-// Helper function to format dates (year and month)
 function formatDate(dateString?: string): string {
     if (!dateString) return "";
     const date = new Date(dateString);
-    // Format to something like "Jan 2023"
     return date.toLocaleDateString("en-US", { year: "numeric", month: "short" });
 }
 
-
-// export default function Experiences({ setSelectedExperience }: ExperiencesProps) {
 export default function Experiences({ selectedProfile }: ExperiencesProps) {
-    // const [experiences, setExperiences] = useState<Item[]>(initialexperiences)
     const [expandedexperiences, setExpandedexperiences] = useState<Set<string>>(new Set())
     const [experiences, setExperiences] = useState<Schema['Experience']['type'][]>([]);
     const [showCreateForm, setShowCreateForm] = React.useState(false);
-
 
     async function deleteExperience(id: string) {
         try {
@@ -49,28 +37,17 @@ export default function Experiences({ selectedProfile }: ExperiencesProps) {
         }
     }
 
-    // async function createExperience(fields: Schema['Experience']['createType']) {
-    //     try {
-    //         const newExperience = await client.models.Experience.create(fields);
-    //         return newExperience
-    //     } catch (error) {
-    //         console.error("Failed to create experience:", error);
-    //         return null
-    //     }
-    // }
-
-
-
-
     useEffect(() => {
-        const sub = client.models.Experience.observeQuery().subscribe({
-            // next: ({ items, isSynced }) => {
+        if (!selectedProfile) return;
+        const sub = client.models.Experience.observeQuery({
+            filter: { profileId: { eq: selectedProfile.id } }
+        }).subscribe({
             next: ({ items }) => {
                 setExperiences([...items]);
             },
         });
         return () => sub.unsubscribe();
-    }, []);
+    }, [selectedProfile]);
 
     const handleDelete = (id: string) => {
         setExperiences(experiences.filter((item) => item.id !== id))
@@ -81,25 +58,6 @@ export default function Experiences({ selectedProfile }: ExperiencesProps) {
         })
         deleteExperience(id)
     }
-
-
-
-
-    // const toggleExpand = (experience: string | Schema['Experience']['createType']) => {
-    //     const id = typeof experience === 'string' ? experience : experience.id;
-
-    //     if (id) {
-    //         setExpandedexperiences((prev) => {
-    //             const newSet = new Set(prev);
-    //             if (newSet.has(id)) {
-    //                 newSet.delete(id);
-    //             } else {
-    //                 newSet.add(id);
-    //             }
-    //             return newSet;
-    //         });
-    //     }
-    // };
 
     const toggleExpand = (id: string) => {
         setExpandedexperiences((prev) => {
@@ -112,8 +70,8 @@ export default function Experiences({ selectedProfile }: ExperiencesProps) {
             return newSet
         })
     }
+
     return (
-        // <div className="w-full max-w-md space-y-4">
         <div>
             <h2 className="text-2xl font-bold mb-4">Experiences</h2>
             {selectedProfile ? (
@@ -121,19 +79,17 @@ export default function Experiences({ selectedProfile }: ExperiencesProps) {
             ) : (
                 <p>Please select a profile to view experiences.</p>
             )}
-            {/* Render experiences here based on the selected profile */}
-
             {experiences.map((item) => (
                 <Card key={item.id}>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">
                             {item.job_title && <span>{item.job_title}</span>}
                             {item.company_name && <span className="ml-1">at {item.company_name}</span>}
-                            {(item?.start_date || item?.end_date) && (
+                            {(item.start_date || item.end_date) && (
                                 <span className="block text-xs text-muted-foreground">
-                                    {item?.start_date ? formatDate(item.start_date) : ""}
-                                    {item?.start_date && item?.end_date ? " - " : ""}
-                                    {item?.end_date ? formatDate(item.end_date) : ""}
+                                    {item.start_date ? formatDate(item.start_date) : ""}
+                                    {item.start_date && item.end_date ? " - " : ""}
+                                    {item.end_date ? formatDate(item.end_date) : ""}
                                 </span>
                             )}
                         </CardTitle>
@@ -172,7 +128,6 @@ export default function Experiences({ selectedProfile }: ExperiencesProps) {
                     )}
                 </Card>
             ))}
-
             <div>
                 <Button
                     aria-label={showCreateForm ? 'Cancel' : 'Add new experience'}
@@ -186,14 +141,13 @@ export default function Experiences({ selectedProfile }: ExperiencesProps) {
                         <ExperienceCreateForm
                             onSubmit={(fields) => {
                                 setShowCreateForm(false)
-                                return fields
+                                const updatedFields = { ...fields, profileId: selectedProfile?.id };
+                                return updatedFields;
                             }}
                         />
                     </div>
                 )}
             </div>
-
         </div>
     )
 }
-

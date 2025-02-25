@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { UserIcon, BriefcaseIcon, AcademicCapIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 import ProfileSelector from '@/components/ProfileSelector';
 import Experiences from '@/components/Experiences';
+import Profiles from '@/components/Profiles';
 import type { Schema } from '@/amplify/data/resource';
 
 
@@ -27,12 +28,13 @@ export default function Dashboard() {
                 return (
                     <>
                         {/* You can add a Profiles component or other profile details here */}
+                        <Profiles />
                     </>
                 );
             case 'Experiences':
                 return (
                     <>
-                        <Experiences selectedProfile={selectedProfile || ''} />
+                        <Experiences selectedProfile={selectedProfile} />
                     </>
                 );
             // Uncomment and implement when ready:
