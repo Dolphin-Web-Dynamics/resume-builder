@@ -1,12 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Minus, ChevronDown, ChevronUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { Schema } from '@/amplify/data/resource';
 import ProfileUpdateForm from "@/ui-components/ProfileUpdateForm"
+import ProfileCreateForm from "@/ui-components/ProfileCreateForm"
 import { generateClient } from 'aws-amplify/data';
+import { PlusIcon } from '@heroicons/react/24/solid';
+
 
 const client = generateClient<Schema>();
 
@@ -21,6 +24,8 @@ export default function Profiles() {
     // const [profiles, setProfiles] = useState<Item[]>(initialprofiles)
     const [expandedprofiles, setExpandedprofiles] = useState<Set<string>>(new Set())
     const [profiles, setProfiles] = useState<Schema['Profile']['type'][]>([]);
+    const [showCreateForm, setShowCreateForm] = React.useState(false);
+
 
     async function deleteProfile(id: string) {
         try {
@@ -94,6 +99,26 @@ export default function Profiles() {
                     )}
                 </Card>
             ))}
+
+            <div>
+                <Button
+                    aria-label={showCreateForm ? 'Cancel' : 'Add new profile'}
+                    onClick={() => setShowCreateForm((prev) => !prev)}
+                >
+                    {showCreateForm ? 'Cancel' : 'Add New Profile'}
+                    <PlusIcon className="h-5 w-5 ml-2" aria-hidden="true" />
+                </Button>
+                {showCreateForm && (
+                    <div className="mt-4">
+                        <ProfileCreateForm
+                            onSubmit={(fields) => {
+                                setShowCreateForm(false)
+                                return fields
+                            }}
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

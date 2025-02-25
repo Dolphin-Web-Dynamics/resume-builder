@@ -9,7 +9,7 @@ import ExperienceUpdateForm from "@/ui-components/ExperienceUpdateForm";
 import ExperienceCreateForm from "@/ui-components/ExperienceCreateForm";
 import { generateClient } from 'aws-amplify/data';
 // Button } from '@aws-amplify/ui-react';
-import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { PlusIcon } from '@heroicons/react/24/solid';
 
 const client = generateClient<Schema>();
 
@@ -161,23 +161,25 @@ export default function Experiences() {
                 </Card>
             ))}
 
-            <Button
-                aria-label={showCreateForm ? 'Cancel' : 'Add new experience'}
-                onClick={() => setShowCreateForm((prev) => !prev)}
-            >
-                {showCreateForm ? 'Cancel' : 'Add New Experience'}
-                <PlusIcon className="h-5 w-5 ml-2" aria-hidden="true" />
-            </Button>
-            {showCreateForm && (
-                <div className="mt-4">
-                    <ExperienceCreateForm
-                        onSubmit={(fields) => {
-                            setShowCreateForm(false)
-                            return fields
-                        }}
-                    />
-                </div>
-            )}
+            <div>
+                <Button
+                    aria-label={showCreateForm ? 'Cancel' : 'Add new experience'}
+                    onClick={() => setShowCreateForm((prev) => !prev)}
+                >
+                    {showCreateForm ? 'Cancel' : 'Add New Experience'}
+                    <PlusIcon className="h-5 w-5 ml-2" aria-hidden="true" />
+                </Button>
+                {showCreateForm && (
+                    <div className="mt-4">
+                        <ExperienceCreateForm
+                            onSubmit={(fields) => {
+                                setShowCreateForm(false)
+                                return fields
+                            }}
+                        />
+                    </div>
+                )}
+            </div>
 
         </div>
     )
