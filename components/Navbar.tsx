@@ -4,8 +4,8 @@ import Link from "next/link";
 export default function Navbar() {
     const [routes] = useState([
         { name: "Home", path: "/" },
-        { name: "Resume", path: "/resume" },
         { name: "Data", path: "/dashboard" },
+        { name: "Resume", path: "/resume" },
         // { name: "Profile", path: "/profile" },
     ]);
 

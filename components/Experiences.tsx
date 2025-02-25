@@ -14,6 +14,10 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 const client = generateClient<Schema>();
 
 
+interface ExperiencesProps {
+    selectedProfile: Schema['Profile']['type'] | '';
+}
+
 // interface ExperiencesProps {
 //     setSelectedExperience: React.Dispatch<React.SetStateAction<Schema['Experience']['type']>>;
 // }
@@ -28,7 +32,7 @@ function formatDate(dateString?: string): string {
 
 
 // export default function Experiences({ setSelectedExperience }: ExperiencesProps) {
-export default function Experiences() {
+export default function Experiences({ selectedProfile }: ExperiencesProps) {
     // const [experiences, setExperiences] = useState<Item[]>(initialexperiences)
     const [expandedexperiences, setExpandedexperiences] = useState<Set<string>>(new Set())
     const [experiences, setExperiences] = useState<Schema['Experience']['type'][]>([]);
@@ -109,7 +113,15 @@ export default function Experiences() {
         })
     }
     return (
-        <div className="w-full max-w-md space-y-4">
+        // <div className="w-full max-w-md space-y-4">
+        <div>
+            <h2 className="text-2xl font-bold mb-4">Experiences</h2>
+            {selectedProfile ? (
+                <p>Showing experiences for: {selectedProfile.name}</p>
+            ) : (
+                <p>Please select a profile to view experiences.</p>
+            )}
+            {/* Render experiences here based on the selected profile */}
 
             {experiences.map((item) => (
                 <Card key={item.id}>
