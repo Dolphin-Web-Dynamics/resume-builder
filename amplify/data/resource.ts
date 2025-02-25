@@ -37,8 +37,8 @@ const schema = a.schema({
     .model({
       degree: a.string(),
       school_name: a.string(),
-      start_year: a.string(),
-      end_year: a.string(),
+      start_date: a.date(),
+      end_date: a.date(),
       notable_achievements: a.string().array(),
       // Associate the degree with a Profile.
       profileId: a.string(),
@@ -70,8 +70,8 @@ const schema = a.schema({
     .model({
       job_title: a.string(),
       company_name: a.string(),
-      start_year: a.string(),
-      end_year: a.string(),
+      start_date: a.date(),
+      end_date: a.date(),
       achievements: a.string().array(),
       // Associate the degree with a Profile.
       profileId: a.string(),

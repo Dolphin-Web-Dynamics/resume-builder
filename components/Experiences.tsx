@@ -45,15 +45,15 @@ export default function Experiences() {
         }
     }
 
-    async function createExperience(fields: Schema['Experience']['createType']) {
-        try {
-            const newExperience = await client.models.Experience.create(fields);
-            return newExperience
-        } catch (error) {
-            console.error("Failed to create experience:", error);
-            return null
-        }
-    }
+    // async function createExperience(fields: Schema['Experience']['createType']) {
+    //     try {
+    //         const newExperience = await client.models.Experience.create(fields);
+    //         return newExperience
+    //     } catch (error) {
+    //         console.error("Failed to create experience:", error);
+    //         return null
+    //     }
+    // }
 
 
 
@@ -81,33 +81,33 @@ export default function Experiences() {
 
 
 
-    const toggleExpand = (experience: string | Schema['Experience']['createType']) => {
-        const id = typeof experience === 'string' ? experience : experience.id;
+    // const toggleExpand = (experience: string | Schema['Experience']['createType']) => {
+    //     const id = typeof experience === 'string' ? experience : experience.id;
 
-        if (id) {
-            setExpandedexperiences((prev) => {
-                const newSet = new Set(prev);
-                if (newSet.has(id)) {
-                    newSet.delete(id);
-                } else {
-                    newSet.add(id);
-                }
-                return newSet;
-            });
-        }
-    };
+    //     if (id) {
+    //         setExpandedexperiences((prev) => {
+    //             const newSet = new Set(prev);
+    //             if (newSet.has(id)) {
+    //                 newSet.delete(id);
+    //             } else {
+    //                 newSet.add(id);
+    //             }
+    //             return newSet;
+    //         });
+    //     }
+    // };
 
-    // const toggleExpand = (id: string) => {
-    //     setExpandedexperiences((prev) => {
-    //         const newSet = new Set(prev)
-    //         if (newSet.has(id)) {
-    //             newSet.delete(id)
-    //         } else {
-    //             newSet.add(id)
-    //         }
-    //         return newSet
-    //     })
-    // }
+    const toggleExpand = (id: string) => {
+        setExpandedexperiences((prev) => {
+            const newSet = new Set(prev)
+            if (newSet.has(id)) {
+                newSet.delete(id)
+            } else {
+                newSet.add(id)
+            }
+            return newSet
+        })
+    }
     return (
         <div className="w-full max-w-md space-y-4">
 
@@ -117,11 +117,11 @@ export default function Experiences() {
                         <CardTitle className="text-sm font-medium">
                             {item.job_title && <span>{item.job_title}</span>}
                             {item.company_name && <span className="ml-1">at {item.company_name}</span>}
-                            {(item.start_date || item.end_date) && (
+                            {(item?.start_date || item?.end_date) && (
                                 <span className="block text-xs text-muted-foreground">
-                                    {item.start_date ? formatDate(item.start_date) : ""}
-                                    {item.start_date && item.end_date ? " - " : ""}
-                                    {item.end_date ? formatDate(item.end_date) : ""}
+                                    {item?.start_date ? formatDate(item.start_date) : ""}
+                                    {item?.start_date && item?.end_date ? " - " : ""}
+                                    {item?.end_date ? formatDate(item.end_date) : ""}
                                 </span>
                             )}
                         </CardTitle>
