@@ -32,7 +32,7 @@ export const ResumeContext = createContext<ResumeContextProps>({
     setResumeData: () => { },
 });
 
-export const ResumeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const Home: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [resumeData, setResumeData] = useState<ResumeData>(defaultResumeData);
 
     useEffect(() => {

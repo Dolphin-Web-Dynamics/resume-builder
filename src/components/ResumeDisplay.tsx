@@ -3,7 +3,7 @@
 'use client';
 
 import React, { useContext, useEffect, useState } from 'react';
-import { ResumeContext } from '../context/ResumeContext';
+import { ResumeContext } from '../context/Home';
 import { ClassicTemplate, ModernTemplate, CustomTemplate } from './templates';
 import { PrinterIcon } from '@heroicons/react/24/solid';
 import SidebarPanel from './SidebarPanel';

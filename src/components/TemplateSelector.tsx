@@ -4,7 +4,7 @@
 
 import React, { useContext } from 'react';
 import dynamic from 'next/dynamic';
-import { ResumeContext } from '../context/ResumeContext';
+import { ResumeContext } from '../context/Home';
 import { SingleValue } from 'react-select';
 
 

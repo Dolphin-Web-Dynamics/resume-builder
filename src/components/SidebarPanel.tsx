@@ -4,7 +4,7 @@
 
 import React, { useState, useContext, useEffect } from 'react';
 import Image from 'next/image';
-import { ResumeContext } from '../context/ResumeContext';
+import { ResumeContext } from '../context/Home';
 import { CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid';
 import TemplateSelector from './TemplateSelector';
 

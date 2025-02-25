@@ -1,29 +1,46 @@
-'use client';
+"use client";
 
-// import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
-import './globals.css';
-// import "./app.css";
-import { ResumeProvider } from "@/src/context/ResumeContext";
-// import Link from 'next/link';
-import Navbar from '../components/Navbar';
+import { Home } from "@/src/context/Home";
+import { Authenticator, ThemeProvider } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+import { usePathname } from "next/navigation";
+import "./globals.css";
+import Navbar from "../components/Navbar"
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
 
+  const isLandingPage = pathname === "/";
 
-// const inter = Inter({ subsets: ["latin"] });
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
   return (
     <html lang="en">
       <body className="bg-gray-100">
-        <Navbar />
-        <ResumeProvider>
-          <main className="container mx-auto p-4">{children}</main>
-        </ResumeProvider>
+        <Home>
+          <Navbar />
+          {isLandingPage ? (
+            // Allow public access to the landing page
+            <main className="container mx-auto p-4">{children}</main>
+          ) : (
+            // Require authentication for all other pages
+            <ThemeProvider>
+              <Authenticator>
+                {({ signOut }) => (
+                  <main className="container mx-auto p-4">
+                    <div className="flex justify-end">
+                      <button
+                        onClick={signOut}
+                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                    {children}
+                  </main>
+                )}
+              </Authenticator>
+            </ThemeProvider>
+          )}
+        </Home>
       </body>
     </html>
   );
