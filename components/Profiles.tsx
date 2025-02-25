@@ -16,8 +16,6 @@ const client = generateClient<Schema>();
 // }
 
 
-
-
 // export default function Profiles({ setSelectedProfile }: ProfilesProps) {
 export default function Profiles() {
     // const [profiles, setProfiles] = useState<Item[]>(initialprofiles)
@@ -86,10 +84,12 @@ export default function Profiles() {
                     </CardHeader>
                     {expandedprofiles.has(item.id) && (
                         <CardContent>
-                            <ProfileUpdateForm profile={item} onSubmit={(fields) => {
-                                toggleExpand(item.id)
-                                return fields
-                            }} />
+                            <ProfileUpdateForm
+                                profile={item}
+                                onSubmit={(fields) => {
+                                    toggleExpand(item.id)
+                                    return fields
+                                }} />
                         </CardContent>
                     )}
                 </Card>

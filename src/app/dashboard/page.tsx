@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { UserIcon, BriefcaseIcon, AcademicCapIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 // import { Accordion, AccordionItem } from '@/components/ui/accordion';
 import Profiles from '@/components/Profiles';
+import Experiences from '@/components/Experiences';
 // import ProfileSection from '@/src/components/ProfileSection';
 // import ExperienceSection from '@/src/components/ExperienceSection';
 // Import additional sections when they're ready
@@ -22,7 +23,7 @@ const sections = [
 ];
 
 export default function Dashboard() {
-    const [activeSection, setActiveSection] = useState('Profile');
+    const [activeSection, setActiveSection] = useState('Profiles');
     // const [experiences, setExperiences] = useState<Schema['Experience']['type'][]>([]);
     // Add these states for degrees and certifications when ready:
     // const [degrees, setDegrees] = useState<Schema['Degree']['type'][]>([]);
@@ -61,7 +62,7 @@ export default function Dashboard() {
 
     const renderSection = () => {
         switch (activeSection) {
-            case 'Profile':
+            case 'Profiles':
                 return (
 
                     <>
@@ -72,12 +73,8 @@ export default function Dashboard() {
             case 'Experiences':
                 return (
                     <>
+                        <Experiences />
                     </>
-                    // <ExperienceSection
-                    //     profile={profile}
-                    //     experiences={experiences}
-                    //     refreshExperiences={fetchExperiences}
-                    // />
                 );
             // case 'Degrees':
             //   return <DegreeSection profile={profile} degrees={degrees} refreshDegrees={fetchDegrees} />;
