@@ -5,7 +5,9 @@
 import './globals.css';
 // import "./app.css";
 import { ResumeProvider } from "@/src/context/ResumeContext";
-import Link from 'next/link';
+// import Link from 'next/link';
+import Navbar from '../components/Navbar';
+
 
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -19,15 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-gray-100">
         <ResumeProvider>
-          <nav className="bg-gray-800 text-white p-4 print:hidden">
-            <div className="container mx-auto flex space-x-4">
-              <Link href="/" className="hover:text-gray-400">Home</Link>
-              {/* <Link href="/templates" className="hover:text-gray-400">Select Template</Link> */}
-              {/* <Link href="/profile" className="hover:text-gray-400">Personal Profile</Link> */}
-              {/* <Link href="/job" className="hover:text-gray-400">Job Listing</Link> */}
-              <Link href="/resume" className="hover:text-gray-400">View Resume</Link>
-            </div>
-          </nav>
+          <Navbar />
           <main className="container mx-auto p-4">{children}</main>
         </ResumeProvider>
       </body>
