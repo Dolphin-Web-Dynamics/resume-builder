@@ -4,16 +4,14 @@
 
 import ResumeDisplay from '../../components/ResumeDisplay';
 // import '@aws-amplify/ui-react/styles.css';
-import { Authenticator } from '@aws-amplify/ui-react';
+// import { Authenticator } from '@aws-amplify/ui-react';
 
 
 
 const ResumePage: React.FC = () => {
     return (
         <div>
-            <Authenticator>
-                <ResumeDisplay />
-            </Authenticator>
+            <ResumeDisplay />
         </div>
     );
 };

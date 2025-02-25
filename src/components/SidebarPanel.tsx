@@ -98,7 +98,7 @@ const SidebarPanel: React.FC = () => {
     const templatesWithPicture = ['custom'];
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 print:hidden">
             {/* JSON Input Section */}
             <section className="bg-white p-4 rounded-md shadow">
                 <h2 className="text-2xl font-semibold mb-4">Paste Job JSON Data</h2>

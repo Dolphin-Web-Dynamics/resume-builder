@@ -67,7 +67,7 @@ const ResumeDisplay: React.FC = () => {
 
             {/* Right Panel: Resume Preview */}
             <div className="col-span-3 place-self-center">
-                <div className="bg-gray-100 min-h-screen w-[calc(8.5in)] print:w-full print:m-0 grid">
+                <div className="bg-gray-100 min-h-screen w-[calc(8.5in)] print:w-full print:m-0 grid print:visible">
                     {/* Print button */}
                     <div className="flex justify-end mb-4 print:hidden">
                         <button

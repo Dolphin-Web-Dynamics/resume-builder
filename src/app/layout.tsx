@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-gray-100">
         <ResumeProvider>
-          <nav className="bg-gray-800 text-white p-4">
+          <nav className="bg-gray-800 text-white p-4 print:hidden">
             <div className="container mx-auto flex space-x-4">
               <Link href="/" className="hover:text-gray-400">Home</Link>
               {/* <Link href="/templates" className="hover:text-gray-400">Select Template</Link> */}
