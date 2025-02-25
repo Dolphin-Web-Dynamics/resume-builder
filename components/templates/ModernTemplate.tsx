@@ -2,7 +2,7 @@
 
 import React from 'react';
 import SkillsTable, { Skill } from '../SkillsTable';
-import { ResumeData } from '@/src/types/resume';
+import { ResumeData } from '@/components/types/resume';
 import ReactMarkDown from 'react-markdown';
 
 interface ModernTemplateProps {

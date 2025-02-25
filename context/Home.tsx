@@ -3,7 +3,7 @@
 'use client';
 
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import { ResumeData } from '../types/resume';
+import { ResumeData } from '@/types/resume';
 
 interface ResumeContextProps {
     resumeData: ResumeData;
