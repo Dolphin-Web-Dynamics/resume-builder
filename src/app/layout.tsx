@@ -20,8 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-100">
+        <Navbar />
         <ResumeProvider>
-          <Navbar />
           <main className="container mx-auto p-4">{children}</main>
         </ResumeProvider>
       </body>
