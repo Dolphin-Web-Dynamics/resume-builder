@@ -24,7 +24,8 @@ const PersonalProfileForm: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setResumeData((prev) => ({
+
+        setResumeData((prev: typeof resumeData) => ({
             ...prev,
             ...form,
         }));

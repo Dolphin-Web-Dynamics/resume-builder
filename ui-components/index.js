@@ -1,0 +1,16 @@
+export { default as SkillCreateForm } from "./SkillCreateForm";
+export { default as SkillUpdateForm } from "./SkillUpdateForm";
+export { default as AddressCreateForm } from "./AddressCreateForm";
+export { default as AddressUpdateForm } from "./AddressUpdateForm";
+export { default as DegreeCreateForm } from "./DegreeCreateForm";
+export { default as DegreeUpdateForm } from "./DegreeUpdateForm";
+export { default as CertificationCreateForm } from "./CertificationCreateForm";
+export { default as CertificationUpdateForm } from "./CertificationUpdateForm";
+export { default as ExperienceCreateForm } from "./ExperienceCreateForm";
+export { default as ExperienceUpdateForm } from "./ExperienceUpdateForm";
+export { default as ProfileCreateForm } from "./ProfileCreateForm";
+export { default as ProfileUpdateForm } from "./ProfileUpdateForm";
+export { default as OpeningCreateForm } from "./OpeningCreateForm";
+export { default as OpeningUpdateForm } from "./OpeningUpdateForm";
+export { default as ResumeCreateForm } from "./ResumeCreateForm";
+export { default as ResumeUpdateForm } from "./ResumeUpdateForm";

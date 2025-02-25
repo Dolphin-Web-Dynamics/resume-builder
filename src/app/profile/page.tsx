@@ -2,7 +2,7 @@
 
 'use client';
 
-import PersonalProfileForm from '../../components/PersonalProfileForm';
+import PersonalProfileForm from '@/components/PersonalProfileForm';
 
 const ProfilePage: React.FC = () => {
     return (

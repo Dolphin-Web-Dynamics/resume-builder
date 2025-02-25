@@ -4,9 +4,9 @@ import Link from "next/link";
 export default function Navbar() {
     const [routes] = useState([
         { name: "Home", path: "/" },
-        // { name: "Dashboard", path: "/dashboard" },
-        // { name: "Profile", path: "/profile" },
         { name: "Resume", path: "/resume" },
+        { name: "Data", path: "/dashboard" },
+        // { name: "Profile", path: "/profile" },
     ]);
 
     // Example: Dynamically remove "Resume" route

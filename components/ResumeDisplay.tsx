@@ -3,10 +3,10 @@
 'use client';
 
 import React, { useContext, useEffect, useState } from 'react';
-import { ResumeContext } from '../src/context/Home';
+import { ResumeContext } from '@/context/Home';
 import { ClassicTemplate, ModernTemplate, CustomTemplate } from './templates';
 import { PrinterIcon } from '@heroicons/react/24/solid';
-import SidebarPanel from '@/components/SidebarPanel';
+import SidebarPanel from './SidebarPanel';
 
 const ResumeDisplay: React.FC = () => {
     const { resumeData } = useContext(ResumeContext);

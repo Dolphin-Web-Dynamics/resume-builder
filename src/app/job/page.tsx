@@ -2,7 +2,7 @@
 
 'use client';
 
-import JobListingForm from '../../components/JobListingForm';
+import JobListingForm from '@/components/JobListingForm';
 
 const JobPage: React.FC = () => {
     return (

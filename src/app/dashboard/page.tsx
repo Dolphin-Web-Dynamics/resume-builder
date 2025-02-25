@@ -2,18 +2,20 @@
 
 import React, { useState, useEffect } from 'react';
 import { UserIcon, BriefcaseIcon, AcademicCapIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
+// import { Accordion, AccordionItem } from '@/components/ui/accordion';
+import Profiles from '@/components/Profiles';
 // import ProfileSection from '@/src/components/ProfileSection';
 // import ExperienceSection from '@/src/components/ExperienceSection';
 // Import additional sections when they're ready
 // import DegreeSection from '@/src/components/DegreeSection';
 // import CertificationSection from '@/src/components/CertificationSection';
-import { generateClient } from 'aws-amplify/data';
-import type { Schema } from '@/amplify/data/resource';
+// import type { Schema } from '@/amplify/data/resource';
+// import { generateClient } from 'aws-amplify/data';
 
-const client = generateClient<Schema>();
+// const client = generateClient<Schema>();
 
 const sections = [
-    { name: 'Profile', icon: UserIcon },
+    { name: 'Profiles', icon: UserIcon },
     { name: 'Experiences', icon: BriefcaseIcon },
     { name: 'Degrees', icon: AcademicCapIcon },
     { name: 'Certifications', icon: CheckBadgeIcon },
@@ -21,44 +23,31 @@ const sections = [
 
 export default function Dashboard() {
     const [activeSection, setActiveSection] = useState('Profile');
-    const [profile, setProfile] = useState<Schema['Profile']['type'] | null>(null);
-    const [experiences, setExperiences] = useState<Schema['Experience']['type'][]>([]);
+    // const [experiences, setExperiences] = useState<Schema['Experience']['type'][]>([]);
     // Add these states for degrees and certifications when ready:
     // const [degrees, setDegrees] = useState<Schema['Degree']['type'][]>([]);
     // const [certifications, setCertifications] = useState<Schema['Certification']['type'][]>([]);
 
     // Fetch functions
-    const fetchProfile = async () => {
-        const { data: profiles, errors } = await client.models.Profile.list({ limit: 1 });
-        if (errors) {
-            console.error('Error fetching profile:', errors);
-            return;
-        }
-        setProfile(profiles.length > 0 ? profiles[0] : null);
-    };
+    // const fetchProfile = async () => {
+    //     const { data: items, errors } = await client.models.Profile.list({ limit: 1 });
+    //     if (errors) {
+    //         console.error('Error fetching profile:', errors);
+    //         return;
+    //     }
+    //     setProfiles(items);
+    // };
 
 
     // For degrees and certifications, define similar functions:
     // const fetchDegrees = async () => { ... };
     // const fetchCertifications = async () => { ... };
 
-    const fetchExperiences = () => {
-        const sub = client.models.Experience.observeQuery().subscribe({
-            next: ({ items }) => {
-                setExperiences([...items]);
-            },
-        });
-        return () => sub.unsubscribe();
-    };
-
-    useEffect(() => {
-        fetchProfile();
-        const unsubscribe = fetchExperiences();
-        // fetchDegrees();
-        // fetchCertifications();
-
-        return () => unsubscribe();
-    }, []);
+    // useEffect(() => {
+    //     // fetchProfile();
+    //     // fetchDegrees();
+    //     // fetchCertifications();
+    // }, []);
 
     // useEffect(() => {
     //     if (profile) {
@@ -74,12 +63,11 @@ export default function Dashboard() {
         switch (activeSection) {
             case 'Profile':
                 return (
+
                     <>
+                        <Profiles />
                     </>
-                    // <ProfileSection
-                    //     profile={profile}
-                    //     refreshProfile={fetchProfile}
-                    // />
+
                 );
             case 'Experiences':
                 return (
@@ -96,7 +84,11 @@ export default function Dashboard() {
             // case 'Certifications':
             //   return <CertificationSection profile={profile} certifications={certifications} refreshCertifications={fetchCertifications} />;
             default:
-                return <ProfileSection profile={profile} refreshProfile={fetchProfile} />;
+                return (
+                    <>
+                        {/* <ProfileSection profile={profile} refreshProfile={fetchProfile} />; */}
+                    </>
+                )
         }
     };
 

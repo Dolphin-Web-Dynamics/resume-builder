@@ -1,11 +1,11 @@
 "use client";
 
-import { Home } from "@/src/context/Home";
+import { Home } from "@/context/Home";
 import { Authenticator, ThemeProvider } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { usePathname } from "next/navigation";
 import "./globals.css";
-import Navbar from "../components/Navbar"
+import Navbar from "@/components/Navbar"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

@@ -2,7 +2,7 @@
 
 'use client';
 
-import ResumeDisplay from '../../components/ResumeDisplay';
+import ResumeDisplay from '@/components/ResumeDisplay';
 // import '@aws-amplify/ui-react/styles.css';
 // import { Authenticator } from '@aws-amplify/ui-react';
 
