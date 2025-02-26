@@ -3,13 +3,3 @@
 @tailwind utilities;
 
 
-/* Print Styles */
-@media print {
-  /* Hide all elements */
-  body * {
-    visibility: hidden;
-  }
-
-
-
-}
